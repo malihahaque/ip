@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 public class Lara {
     public static void main (String args[]) {
         Scanner scanner = new Scanner(System.in);
@@ -16,6 +17,5 @@ public class Lara {
                 System.out.println(message);
             }
         }
-
     }
 }
