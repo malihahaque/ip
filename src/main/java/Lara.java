@@ -23,6 +23,8 @@ public class Lara {
                     markTask(message);
                 } else if (firstWord.equals("unmark")) {
                     unmarkTask(message);
+                } else if (firstWord.equals("delete")) {
+                  deleteTask(message);
                 } else if (firstWord.equals("todo") || firstWord.equals("deadline") || firstWord.equals("event")){
                     addTask(message);
                 } else {
@@ -42,7 +44,6 @@ public class Lara {
     }
 
     private static void addTask(String description) {
-
         try {
             String[] words= description.split(" ",2);
             if (words.length <2) {
@@ -67,6 +68,21 @@ public class Lara {
                 list.add(event);
                 System.out.println(event);
             }
+            System.out.println("Now you have " + list.size() + " tasks in the list.");
+        } catch (LaraException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void deleteTask(String command) {
+        try {
+            int taskNumber = Integer.parseInt(command.split(" ")[1]) - 1;
+            if (taskNumber < 0 || taskNumber >  list.size()) {
+                throw new LaraException("Please input a valid task number!");
+            }
+            Task removedTask = list.remove(taskNumber);
+            System.out.println("Noted. I've removed this task:");
+            System.out.println(removedTask);
             System.out.println("Now you have " + list.size() + " tasks in the list.");
         } catch (LaraException e) {
             System.out.println(e.getMessage());
