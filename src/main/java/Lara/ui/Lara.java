@@ -1,3 +1,9 @@
+package Lara.ui;
+
+import Lara.exception.LaraException;
+import Lara.parser.Parser;
+import Lara.storage.Storage;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 

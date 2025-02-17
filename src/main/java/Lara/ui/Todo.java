@@ -1,3 +1,7 @@
+package Lara.ui;
+
+import Lara.ui.Task;
+
 public class Todo extends Task {
 
     public Todo(String description) {

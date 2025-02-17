@@ -1,3 +1,9 @@
+package Lara.parser;
+
+import Lara.ui.Deadline;
+import Lara.ui.Event;
+import Lara.ui.Task;
+
 public class Date {
     public static Task Date(String input) {
         if (input.startsWith("deadline")) {

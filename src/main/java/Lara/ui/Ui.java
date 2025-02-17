@@ -1,9 +1,11 @@
+package Lara.ui;
+
 import java.util.Scanner;
 
 public class Ui {
 
     public void welcomeMessage() {
-        System.out.println("Hello! I'm Lara");
+        System.out.println("Hello! I'm Lara.ui.Lara");
         System.out.println("What can I do for you?");
     }
 
