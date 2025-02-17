@@ -6,6 +6,18 @@ public class Storage {
 
     public Storage(String filePath) {
         this.filePath = filePath;
+        clearFileOnStartup();
+    }
+
+    private void clearFileOnStartup() {
+        try {
+            File file = new File(filePath);
+            if (file.exists()) {
+                new PrintWriter(new FileWriter(file)).close(); // Clears file content
+            }
+        } catch (IOException e) {
+            System.out.println("Warning: Unable to clear file on startup.");
+        }
     }
 
     public ArrayList<Task> load() throws LaraException {
@@ -73,6 +85,15 @@ public class Storage {
     }
 
 }
+
+
+
+
+
+
+
+
+
 
 
 
