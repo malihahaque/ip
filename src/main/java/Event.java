@@ -17,14 +17,13 @@ public class Event extends Task {
     public String toString() {
         DateTimeFormatter console = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mma");
         return "[E]" + super.toString() + " (from: " + start.format(console) + " to: " + end.format(console) + ")";
-<<<<<<< HEAD
-=======
+
     }
 
     @Override
     public String toFileFormat() {
         return "E | " + (isDone ? "1" : "0") + " | " + description + " | " + start + " | " + end;
->>>>>>> branch-Level-8
+
     }
 }
 
