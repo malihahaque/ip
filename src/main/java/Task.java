@@ -1,9 +1,7 @@
-import java.util.ArrayList;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
-    protected static int taskCounter=0;
 
     public Task(String description) {
         this.description = description;
@@ -11,7 +9,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     public String getDescription() {
@@ -28,7 +26,9 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return   "[" + getStatusIcon() + "] " + description;
     }
+
+    public abstract String toFileFormat();
 }
 
