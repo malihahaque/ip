@@ -18,5 +18,10 @@ public class Event extends Task {
         DateTimeFormatter console = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mma");
         return "[E]" + super.toString() + " (from: " + start.format(console) + " to: " + end.format(console) + ")";
     }
+
+    @Override
+    public String toFileFormat() {
+        return "E | " + (isDone ? "1" : "0") + " | " + description + " | " + start + " | " + end;
+    }
 }
 
