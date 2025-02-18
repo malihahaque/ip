@@ -105,6 +105,23 @@ public class TaskList {
             throw new LaraException("Invalid task number.");
         }
     }
+
+    public void findTasks(String keyword) {
+        System.out.println("Here are the tasks with the " + keyword + "in your list:");
+
+        int count = 1;
+        for (Task task : tasks) {
+            if (task.getDescription().contains(keyword)) {
+                System.out.println(count + "." + task);
+                count++;
+            }
+        }
+
+        if (count == 1) {
+            System.out.println("Sorry! It seems like no matching tasks have been found. Please try again");
+        }
+    }
+
 }
 
 

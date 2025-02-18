@@ -48,6 +48,12 @@ public class Parser {
                     tasks.addTask(command);
                     storage.save(tasks.getTasks());
                     break;
+                case "find":
+                    if (words.length < 2) {
+                        throw new LaraException("Please provide a keyword to search for:");
+                    }
+                    tasks.findTasks(words[1]);
+                    break;
                 default:
                     throw new LaraException("I do not understand what you mean! Please try again!");
             }
