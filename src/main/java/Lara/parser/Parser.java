@@ -5,8 +5,6 @@ import Lara.ui.TaskList;
 import Lara.ui.Ui;
 import Lara.exception.LaraException;
 
-
-
 public class Parser {
     public void handleCommand(String command, TaskList tasks, Ui ui, Storage storage) {
         try {
@@ -38,6 +36,12 @@ public class Parser {
                 case "event":
                     tasks.addTask(command);
                     storage.save(tasks.getTasks());
+                    break;
+                case "find":
+                    if (words.length < 2) {
+                        throw new LaraException("Please provide a keyword to search for:");
+                    }
+                    tasks.findTasks(words[1]);
                     break;
                 default:
                     throw new LaraException("I do not understand what you mean! Please try again!");
