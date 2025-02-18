@@ -1,3 +1,15 @@
+/**
+ * The Storage class handles the loading and saving of tasks from/to a file.
+ * It ensures persistence of task data across sessions.
+ *
+ * Methods include:
+ * - load(): Reads tasks from file.
+ * - save(): Saves tasks to file.
+ *
+ * @author Maliha Haque
+ * @version 1.0
+ */
+
 package Lara.storage;
 
 import Lara.exception.LaraException;
@@ -5,7 +17,6 @@ import Lara.ui.Task;
 import Lara.ui.Event;
 import Lara.ui.Deadline;
 import Lara.ui.Todo;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -33,7 +44,7 @@ public class Storage {
         File file = new File(filePath);
 
         if (!file.exists()) {
-            return tasks; // Return empty list if file does not exist
+            return tasks;
         }
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {

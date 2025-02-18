@@ -1,6 +1,13 @@
+/**
+ * The Event class represents a task that occurs at a specific time.
+ * It is a subclass of Task and includes a date/time field.
+ *
+ * Example: "Team meeting /at Monday 2pm"
+ *
+ * @author Maliha Haque
+ * @version 1.0
+ */
 package Lara.ui;
-
-import Lara.ui.Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
