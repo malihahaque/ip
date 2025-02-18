@@ -52,7 +52,7 @@ public class Parser {
                     if (words.length < 2) {
                         throw new LaraException("Please provide a keyword to search for:");
                     }
-                    tasks.findTasks(words[1]);
+                    tasks.findTasks(words[1].trim());
                     break;
                 default:
                     throw new LaraException("I do not understand what you mean! Please try again!");
