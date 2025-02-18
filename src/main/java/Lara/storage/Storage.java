@@ -32,7 +32,7 @@ public class Storage {
         try {
             File file = new File(filePath);
             if (file.exists()) {
-                new PrintWriter(new FileWriter(file)).close(); // Clears file content
+                new PrintWriter(new FileWriter(file)).close();
             }
         } catch (IOException e) {
             System.out.println("Warning: Unable to clear file on startup.");
