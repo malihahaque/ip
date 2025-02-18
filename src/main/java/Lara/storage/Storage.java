@@ -1,3 +1,15 @@
+/**
+ * The Storage class handles the loading and saving of tasks from/to a file.
+ * It ensures persistence of task data across sessions.
+ *
+ * Methods include:
+ * - load(): Reads tasks from file.
+ * - save(): Saves tasks to file.
+ *
+ * @author Maliha Haque
+ * @version 1.0
+ */
+
 package Lara.storage;
 
 import Lara.exception.LaraException;

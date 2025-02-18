@@ -1,11 +1,20 @@
+/**
+ * The Parser class is responsible for interpreting user input commands
+ * and converting them into executable program actions.
+ *
+ * Methods include:
+ * - parse(): Processes input and returns the appropriate command.
+ *
+ * @author Maliha Haque
+ * @version 1.0
+ */
+
 package Lara.parser;
 
 import Lara.storage.Storage;
 import Lara.ui.TaskList;
 import Lara.ui.Ui;
 import Lara.exception.LaraException;
-
-
 
 public class Parser {
     public void handleCommand(String command, TaskList tasks, Ui ui, Storage storage) {

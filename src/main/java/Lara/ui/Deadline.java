@@ -1,3 +1,13 @@
+/**
+ * The Deadline class represents a task that has a specific due date/time.
+ * It is a subclass of Task and includes a deadline field.
+ *
+ * Example: "Submit assignment /by Sunday"
+ *
+ * @author Maliha Haque
+ * @version 1.0
+ */
+
 package Lara.ui;
 
 import Lara.ui.Task;

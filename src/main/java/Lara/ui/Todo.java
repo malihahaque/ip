@@ -1,6 +1,14 @@
-package Lara.ui;
+/**
+ * The Todo class represents a task without any date/time attached to it.
+ * It is a subclass of Task.
+ *
+ * Example: "Read a book"
+ *
+ * @author Maliha Haque
+ * @version 1.0
+ */
 
-import Lara.ui.Task;
+package Lara.ui;
 
 public class Todo extends Task {
 

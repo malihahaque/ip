@@ -1,9 +1,16 @@
+/**
+ * Lara is the main entry point of the chatbot application.
+ * It initializes the necessary components and runs the program.
+ *
+ * @author Maliha Haque
+ * @version 1.0
+ */
+
 package Lara.ui;
 
 import Lara.exception.LaraException;
 import Lara.parser.Parser;
 import Lara.storage.Storage;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 

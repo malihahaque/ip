@@ -1,3 +1,19 @@
+/**
+ * Task is an abstract class representing a generic task.
+ * Subclasses include Todo, Deadline, and Event.
+ *
+ * Fields include:
+ * - description: The task details.
+ * - isDone: Status indicating if the task is completed.
+ *
+ * Methods include:
+ * - markAsDone(): Marks the task as completed.
+ * - toString(): Returns a string representation of the task.
+ *
+ * @author Maliha Haque
+ * @version 1.0
+ */
+
 package Lara.ui;
 
 public abstract class Task {
