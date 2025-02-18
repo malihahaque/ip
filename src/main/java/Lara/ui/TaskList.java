@@ -107,7 +107,7 @@ public class TaskList {
     }
 
     public void findTasks(String keyword) {
-        System.out.println("Here are the tasks with the " + keyword + "in your list:");
+        System.out.println("Here are the tasks with the word " + keyword + " in your list:");
 
         int count = 1;
         for (Task task : tasks) {
