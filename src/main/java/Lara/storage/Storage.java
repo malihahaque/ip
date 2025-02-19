@@ -17,7 +17,6 @@ import Lara.ui.Task;
 import Lara.ui.Event;
 import Lara.ui.Deadline;
 import Lara.ui.Todo;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -33,7 +32,7 @@ public class Storage {
         try {
             File file = new File(filePath);
             if (file.exists()) {
-                new PrintWriter(new FileWriter(file)).close(); // Clears file content
+                new PrintWriter(new FileWriter(file)).close();
             }
         } catch (IOException e) {
             System.out.println("Warning: Unable to clear file on startup.");
@@ -45,7 +44,7 @@ public class Storage {
         File file = new File(filePath);
 
         if (!file.exists()) {
-            return tasks; // Return empty list if file does not exist
+            return tasks;
         }
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {

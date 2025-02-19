@@ -7,7 +7,6 @@
  * @author Maliha Haque
  * @version 1.0
  */
-
 package Lara.ui;
 
 import java.time.LocalDateTime;

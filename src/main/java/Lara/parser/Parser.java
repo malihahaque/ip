@@ -3,8 +3,7 @@
  * and converting them into executable program actions.
  *
  * Methods include:
- * - parse(): Processes input and returns the appropriate command.
- *
+ * - handleCommand(String, TaskList, Ui, Storage) : Processes input and returns the appropriate command.
  * @author Maliha Haque
  * @version 1.0
  */
