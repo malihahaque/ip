@@ -44,6 +44,10 @@ public class Lara {
         }
     }
 
+    public String getResponse(String input) {
+        return "Lara heard: " + input;
+    }
+
     public static void main(String[] args) {
         new Lara("tasks.txt").run();
     }
