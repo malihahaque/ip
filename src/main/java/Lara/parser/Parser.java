@@ -10,58 +10,60 @@
 
 package Lara.parser;
 
+import Lara.ui.Task;
 import Lara.storage.Storage;
 import Lara.ui.TaskList;
 import Lara.ui.Ui;
 import Lara.exception.LaraException;
 
 public class Parser {
-    public void handleCommand(String command, TaskList tasks, Ui ui, Storage storage) {
+    public String handleCommandAndReturn(String command, TaskList tasks, Ui ui, Storage storage) throws LaraException {
+        StringBuilder response = new StringBuilder();
+
         try {
             String[] words = command.split(" ", 2);
             String action = words[0];
 
             switch (action) {
+                case "hello":
+                    return "Hello! I am Lara! How can I help you today?";
                 case "bye":
-                    ui.farewellMessage();
-                    System.exit(0);
-                    break;
+                    return "Goodbye! Have a great day!";
                 case "list":
-                    tasks.printList();
-                    break;
+                    return tasks.getTaskList(tasks);
                 case "mark":
-                    tasks.markTask(words[1]);
+                    String ans = tasks.markTask(words[1]);
                     storage.save(tasks.getTasks());
-                    break;
+                    return ans;
                 case "unmark":
-                    tasks.unmarkTask(words[1]);
+                    String notDone= tasks.unmarkTask(words[1]);
                     storage.save(tasks.getTasks());
-                    break;
+                    return notDone;
                 case "delete":
-                    tasks.deleteTask(words[1]);
+                    String delete = tasks.deleteTask(words[1]);
                     storage.save(tasks.getTasks());
-                    break;
+                    return delete;
                 case "todo":
                 case "deadline":
                 case "event":
-                    tasks.addTask(command);
+                    String answer= tasks.addTask(command);
                     storage.save(tasks.getTasks());
-                    break;
+                    return answer;
                 case "find":
                     if (words.length < 2) {
                         throw new LaraException("Please provide a keyword to search for:");
                     }
-                    tasks.findTasks(words[1].trim());
-                    break;
+                    return tasks.findTasks(tasks, words[1].trim());
                 default:
                     throw new LaraException("I do not understand what you mean! Please try again!");
             }
         } catch (LaraException e) {
-            ui.errorMessage(e.getMessage());
+            return "Error: " + e.getMessage();
         } catch (ArrayIndexOutOfBoundsException e) {
-            ui.errorMessage("Invalid command format!");
+            return "Error: Invalid command format!";
         }
     }
+
 }
 
 

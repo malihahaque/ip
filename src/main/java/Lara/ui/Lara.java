@@ -36,17 +36,18 @@ public class Lara {
 
     public void run() {
         ui.welcomeMessage();
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            String command = scanner.nextLine().trim();
-            parser.handleCommand(command, tasks, ui, storage);
-        }
     }
 
     public String getResponse(String input) {
-        return "Lara heard: " + input;
+        try {
+            return parser.handleCommandAndReturn(input, tasks, ui, storage);
+        } catch (LaraException e) {
+            return "Error: " + e.getMessage();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return "Error: Invalid command format!";
+        }
     }
+
 
     public static void main(String[] args) {
         new Lara("tasks.txt").run();

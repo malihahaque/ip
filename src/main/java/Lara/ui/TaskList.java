@@ -35,7 +35,7 @@ public class TaskList {
         }
     }
 
-    public void addTask(String command) throws LaraException {
+    public String addTask(String command) throws LaraException {
         String[] words = command.split(" ", 2);
         if (words.length < 2) {
             throw new LaraException("Please describe the task you want to add!");
@@ -58,68 +58,75 @@ public class TaskList {
         }
 
         tasks.add(newTask);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(newTask);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        return "Got it. I've added this task:\n" + newTask +
+                "\nNow you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list.";
     }
 
-    public void deleteTask(String indexStr) throws LaraException {
+    public String deleteTask(String indexStr) throws LaraException {
         try {
             int index = Integer.parseInt(indexStr) - 1;
             if (index < 0 || index >= tasks.size()) {
                 throw new LaraException("Please input a valid task number!");
             }
             Task removedTask = tasks.remove(index);
-            System.out.println("Noted. I've removed this task:");
-            System.out.println(removedTask);
-            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+            return "Noted. I've removed this task:\n" + removedTask +
+                    "\nNow you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list.";
         } catch (NumberFormatException e) {
             throw new LaraException("Invalid task number.");
         }
     }
 
-    public void markTask(String indexStr) throws LaraException {
+    public String markTask(String indexStr) throws LaraException {
         try {
             int index = Integer.parseInt(indexStr) - 1;
             if (index < 0 || index >= tasks.size()) {
                 throw new LaraException("Please input a valid task number!");
             }
             tasks.get(index).markAsDone();
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println(tasks.get(index));
+            return "Well done! I've marked this task as done:\n" + tasks.get(index);
         } catch (NumberFormatException e) {
             throw new LaraException("Invalid task number.");
         }
     }
 
-    public void unmarkTask(String indexStr) throws LaraException {
+    public String unmarkTask(String indexStr) throws LaraException {
         try {
             int index = Integer.parseInt(indexStr) - 1;
             if (index < 0 || index >= tasks.size()) {
                 throw new LaraException("Please input a valid task number!");
             }
             tasks.get(index).markAsUndone();
-            System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println(tasks.get(index));
+            return "OK, I've marked this task as not done yet:\n" + tasks.get(index);
+
         } catch (NumberFormatException e) {
             throw new LaraException("Invalid task number.");
         }
     }
 
-    public void findTasks(String keyword) {
-        System.out.println("Here are the tasks with the keyword " + keyword + " in your list:");
+    public String getTaskList(TaskList tasks) {
+        if (tasks.getTasks().isEmpty()) {
+            return "Your task list is empty.";
+        }
+        StringBuilder response = new StringBuilder("Here are the tasks in your list:\n");
+        for (int i = 0; i < tasks.getTasks().size(); i++) {
+            response.append(i + 1).append(". ").append(tasks.getTasks().get(i)).append("\n");
+        }
+        return response.toString();
+    }
 
+    public String findTasks(TaskList tasks, String keyword) {
+        StringBuilder response = new StringBuilder("Here are the matching tasks:\n");
         int count = 1;
-        for (Task task : tasks) {
+        for (Task task : tasks.getTasks()) {
             if (task.getDescription().contains(keyword)) {
-                System.out.println(count + "." + task);
+                response.append(count).append(". ").append(task).append("\n");
                 count++;
             }
         }
-
         if (count == 1) {
-            System.out.println("Sorry! It seems like no matching tasks have been found. Please try again");
+            response.append("No matching tasks found.");
         }
+        return response.toString();
     }
 
 }
