@@ -4,7 +4,6 @@ import Lara.ui.Lara;
 import javafx.application.Platform;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -27,8 +26,8 @@ public class MainWindow extends AnchorPane {
 
     private Lara lara;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/UserLogo.png"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/LaraLogo.png"));
 
     @FXML
     public void initialize() {
