@@ -19,19 +19,23 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
-            assert fxmlLoader.getLocation() != null : "FXML file is missing!";
-            AnchorPane ap = fxmlLoader.load();
-            Scene scene = new Scene(ap);
-            stage.setScene(scene);
-            assert scene != null : "Scene should not be null before setting the stage!";
-            //fxmlLoader.<MainWindow>getController().setDuke(duke);  // inject the Duke instance
-            stage.show();
-
-            fxmlLoader.<MainWindow>getController().setDuke(duke);
-
+            setupUI(stage);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void setupUI(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+        assert fxmlLoader.getLocation() != null : "FXML file is missing!";
+
+        AnchorPane ap = fxmlLoader.load();
+        Scene scene = new Scene(ap);
+        assert scene != null : "Scene should not be null before setting the stage!";
+
+        stage.setScene(scene);
+        stage.show();
+
+        fxmlLoader.<MainWindow>getController().setDuke(duke);
     }
 }
