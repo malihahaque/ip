@@ -34,6 +34,11 @@ public class Lara {
         }
     }
 
+    public String getGreeting() {
+        return "Hello! I'm Lara. How can I assist you today?";
+    }
+
+
     public void run() {
         ui.welcomeMessage();
     }

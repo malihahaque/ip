@@ -26,7 +26,7 @@ public class Parser {
 
             switch (action) {
                 case "hello":
-                    return "Hello! I am Lara! How can I help you today?";
+                    return "How can I help you?";
                 case "bye":
                     return "Goodbye! Have a great day!";
                 case "list":

@@ -38,6 +38,9 @@ public class MainWindow extends AnchorPane {
     /** Injects the Duke instance */
     public void setDuke(Lara d) {
         lara = d;
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(lara.getGreeting(), dukeImage)
+        );
     }
 
     /**
