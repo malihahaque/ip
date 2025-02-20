@@ -40,6 +40,9 @@ public class Lara {
 
     public String getResponse(String input) {
         try {
+            if (input.equalsIgnoreCase("bye")) {
+                return "Goodbye! Have a great day!"; // Return goodbye message first
+            }
             return parser.handleCommandAndReturn(input, tasks, ui, storage);
         } catch (LaraException e) {
             return "Error: " + e.getMessage();

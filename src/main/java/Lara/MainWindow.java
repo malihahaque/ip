@@ -1,7 +1,9 @@
 package Lara;
 
 import Lara.ui.Lara;
-import Lara.DialogBox;
+import javafx.application.Platform;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,5 +53,13 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+        if (input.equalsIgnoreCase("bye")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(0.5)); // Wait 2 seconds
+            delay.setOnFinished(event -> {
+                Platform.exit();
+                System.exit(0);
+            });
+            delay.play();
+        }
     }
 }
