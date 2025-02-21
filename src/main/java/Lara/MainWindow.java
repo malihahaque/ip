@@ -38,7 +38,7 @@ public class MainWindow extends AnchorPane {
     public void setDuke(Lara d) {
         lara = d;
         dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(lara.getGreeting(), dukeImage)
+                DialogBox.getDukeMessage(lara.getGreeting(), dukeImage)
         );
     }
 
@@ -51,8 +51,8 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = lara.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getUserMessage(input, userImage),
+                DialogBox.getDukeMessage(response, dukeImage)
         );
         userInput.clear();
         if (input.equalsIgnoreCase("bye")) {

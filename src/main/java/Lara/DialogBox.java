@@ -27,7 +27,7 @@ public class DialogBox extends HBox {
     private ImageView avatar;
 
     /**
-     * Constructs a new MessageBox with specified text, image and background.
+     * Constructs a new DialogBox with specified text, image and background.
      *
      * @param message The text to be displayed in message box.
      * @param image The image to be displayed in the message box.
@@ -61,7 +61,7 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(temp);
     }
 
-    public static DialogBox getUserDialog(String message, Image image) {
+    public static DialogBox getUserMessage(String message, Image image) {
         Color paleBlue = Color.color(Color.LIGHTBLUE.getRed(),
                 Color.LIGHTBLUE.getGreen(),
                 Color.LIGHTBLUE.getBlue(),
@@ -70,7 +70,7 @@ public class DialogBox extends HBox {
         return new DialogBox(message, image, paleBlue, userFontStyle);
     }
 
-    public static DialogBox getDukeDialog(String message, Image image) {
+    public static DialogBox getDukeMessage(String message, Image image) {
         Color palePurple = Color.color(Color.ORCHID.getRed(),
                 Color.ORCHID.getGreen(),
                 Color.ORCHID.getBlue(),
