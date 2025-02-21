@@ -43,6 +43,13 @@ public class TaskList {
 
         String type = words[0];
         String details = words[1];
+
+        for (Task task : tasks) {
+            if (task.getDescription().equalsIgnoreCase(details)) {
+                throw new LaraException("Duplicate task detected! This task already exists.");
+            }
+        }
+
         Task newTask;
 
         if (type.equals("todo")) {
