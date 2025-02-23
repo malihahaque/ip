@@ -6,8 +6,9 @@ What is Lara?
 Lara is your best friend; it’s the task manager chatbot that keeps track of your tasks. It is also:
 
 - Easy to use
-  Efficient
-  -Fast
+- Super fast
+- Efficient
+  
 
 ### **Installation**
 1. **Clone the Repository:**
@@ -42,14 +43,14 @@ For example,
 
 ### Sort
 1. `sort_deadlines` sorts by dates of Deadline type in chronological order.
-2. `sort_events` sorts the date of Event type in chronological order of the from date.
+2. `sort_events` sorts the from date of Event type in chronological order.
 
 ## Help
-`help
+`help`
 Lists out all the commands used in the chatbot and the exact format.
 
 ## ChangeFile
-`changeFile <file_path>
+`changeFile [filePath]`
 Changes the storage file location.
 
 ### Close
