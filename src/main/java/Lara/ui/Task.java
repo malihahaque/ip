@@ -16,6 +16,10 @@
 
 package Lara.ui;
 
+import Lara.parser.Date;
+import java.time.LocalDateTime;
+
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -44,6 +48,10 @@ public abstract class Task {
     @Override
     public String toString() {
         return   "[" + getStatusIcon() + "] " + description;
+    }
+
+    public LocalDateTime getComparableDate() {
+        return null;
     }
 
     public abstract String toFileFormat();

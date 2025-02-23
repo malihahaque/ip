@@ -25,12 +25,17 @@ public class Parser {
             String action = words[0];
 
             switch (action) {
-                case "hello":
+                case "hello" :
                     return "How can I help you?";
                 case "bye":
                     return "Goodbye! Have a great day!";
+                case "help":
+                    return ui.showHelp();
                 case "list":
                     return tasks.getTaskList(tasks);
+                case "changeFile":
+                    String newFilePath = command.split(" ", 2)[1];
+                    return tasks.changeStorage(newFilePath, storage);
                 case "mark":
                     String ans = tasks.markTask(words[1]);
                     storage.save(tasks.getTasks());
@@ -43,6 +48,8 @@ public class Parser {
                     String delete = tasks.deleteTask(words[1]);
                     storage.save(tasks.getTasks());
                     return delete;
+                case "sort":
+                    return tasks.sortTasks();
                 case "todo":
                 case "deadline":
                 case "event":

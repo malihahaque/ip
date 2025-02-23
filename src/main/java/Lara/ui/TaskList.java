@@ -2,11 +2,8 @@ package Lara.ui;
 
 import Lara.exception.LaraException;
 import Lara.parser.Date;
-import Lara.ui.Deadline;
-import Lara.ui.Event;
-import Lara.ui.Task;
-import Lara.ui.Todo;
-
+import Lara.storage.Storage;
+import java.util.Comparator;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -141,6 +138,16 @@ public class TaskList {
             response.append("No matching tasks found.");
         }
         return response.toString();
+    }
+
+    public String changeStorage(String newFilePath, Storage storage) {
+        storage.change(newFilePath);
+        return "Data source has been updated to: " + newFilePath;
+    }
+
+    public String sortTasks() {
+        tasks.sort(Comparator.comparing(Task::getComparableDate, Comparator.nullsLast(Comparator.naturalOrder())));
+        return "Your task list has been sorted by deadline or start time.";
     }
 
 }

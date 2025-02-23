@@ -1,12 +1,14 @@
 package Lara.parser;
 
-import Lara.ui.Deadline;
-import Lara.ui.Event;
-import Lara.ui.Task;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import Lara.ui.Task;
+import Lara.ui.Deadline;
+import Lara.ui.Event;
+
 
 public class Date {
+
     public static Task Date(String input) {
         if (input.startsWith("deadline")) {
             String[] parts = input.split(" /by ");
@@ -22,7 +24,6 @@ public class Date {
         }
         return null;
     }
-
     public static boolean isValidDateTime(String dateTime) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
         format.setLenient(false);
