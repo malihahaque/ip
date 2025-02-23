@@ -13,7 +13,7 @@ Lara is your best friend; it’s the task manager chatbot that keeps track of yo
 ### **Installation**
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/malihahaque/Lara.git
+   git clone https://github.com/malihahaque/ip
 
 ## Features
 ### Adding tasks
@@ -23,27 +23,33 @@ Commands:
 3. Add Events: `event description /from DD/MM/YYYY HHMM /to DD/MM/YYYY HHMM `
 
 ### Listing
-The `list` command expects a list of the tasks currently stored.
+The `list` command displays a list of the tasks currently stored.
 
 For example,
 ```
-1. [T][] one
-2. [T][] two
+1. [T][] buy book
+2. [T][] journal before bed
 ```
 
 ### Marking & Unmarking
 1. `mark [task number]`
+You can mark a task as done.
 2. `unmark [task number]`
+Mistakenly marked a task as done? Not to fret, you can also mark a task as not done yet.
 
 ### Delete
 `delete [task number]`
+Deletes the task stored at that number.
 
 ### Find
 `find [keyword]`
+Find your tasks with a specific keyword!
 
 ### Sort
-1. `sort_deadlines` sorts by dates of Deadline type in chronological order.
-2. `sort_events` sorts the from date of Event type in chronological order.
+1. `sort_deadlines` 
+Sorts by dates of Deadline type in chronological order.
+2. `sort_events` 
+Sorts the from date of Event type in chronological order.
 
 ## Help
 `help`
