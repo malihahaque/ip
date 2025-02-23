@@ -17,14 +17,50 @@ import Lara.ui.Task;
 import Lara.ui.Event;
 import Lara.ui.Deadline;
 import Lara.ui.Todo;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Storage {
+    private static final String DIRECTORY_PATH = "src/main/data";
+    private static final String FILE_NAME = "tasks.txt";
     private String filePath;
 
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    public Storage() {
+        this.filePath = DIRECTORY_PATH + "/" + FILE_NAME;
+        ensureDirectoryExists();
+        ensureFileExists();
+    }
+
+    private void ensureDirectoryExists() {
+        try {
+            Files.createDirectories(Paths.get(DIRECTORY_PATH)); // ✅ Ensure directory exists
+        } catch (IOException e) {
+            System.out.println("Warning: Unable to create directory for tasks file.");
+        }
+    }
+
+    private void ensureFileExists() {
+        File file = new File(filePath);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            System.out.println("Warning: Unable to create file for tasks.");
+        }
+    }
+
+    public String changeFile(String newFileName) {
+        this.filePath = DIRECTORY_PATH + "/" + newFileName;
+        ensureFileExists();
+        return "Storage file changed to " + newFileName + "!";
     }
 
     public void change(String newFilePath) {

@@ -34,8 +34,13 @@ public class Parser {
                 case "list":
                     return tasks.getTaskList(tasks);
                 case "changeFile":
-                    String newFilePath = command.split(" ", 2)[1];
-                    return tasks.changeStorage(newFilePath, storage);
+                    if (words.length < 2) {
+                        throw new LaraException("Please specify a file name.");
+                    }
+                    String newFileName = words[1].trim();
+                    storage.changeFile(newFileName);
+                    storage.save(tasks.getTasks());
+                    return "Storage file changed to: " + newFileName;
                 case "mark":
                     String ans = tasks.markTask(words[1]);
                     storage.save(tasks.getTasks());

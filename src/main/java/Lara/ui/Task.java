@@ -54,6 +54,8 @@ public abstract class Task {
         return null;
     }
 
-    public abstract String toFileFormat();
+    public String toFileFormat() {
+        return null;
+    }
 }
 

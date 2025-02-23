@@ -22,7 +22,7 @@ public class Lara {
 
     public Lara(String filePath) {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage();
         parser = new Parser();
 
         try {
