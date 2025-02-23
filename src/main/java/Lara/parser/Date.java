@@ -3,6 +3,8 @@ package Lara.parser;
 import Lara.ui.Deadline;
 import Lara.ui.Event;
 import Lara.ui.Task;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Date {
     public static Task Date(String input) {
@@ -19,6 +21,17 @@ public class Date {
             return new Event(description, fromDateTime, toDateTime);
         }
         return null;
+    }
+
+    public static boolean isValidDateTime(String dateTime) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
+        format.setLenient(false);
+        try {
+            format.parse(dateTime);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
     }
 }
 

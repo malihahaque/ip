@@ -1,6 +1,7 @@
 package Lara.ui;
 
 import Lara.exception.LaraException;
+import Lara.parser.Date;
 import Lara.ui.Deadline;
 import Lara.ui.Event;
 import Lara.ui.Task;
@@ -56,11 +57,17 @@ public class TaskList {
             newTask = new Todo(details);
         } else if (type.equals("deadline")) {
             String[] by = details.split(" /by ", 2);
-            if (by.length < 2) throw new LaraException("Please specify a deadline with /by");
+            if (by.length < 2) throw new LaraException("Please specify a deadline with /by, the date and time format has to be DD/MM/YYYY HHMM");
+            if (!Date.isValidDateTime(by[1])) {
+                throw new LaraException("Invalid deadline format! Use DD/MM/YYYY HHMM.");
+            }
             newTask = new Deadline(by[0], by[1]);
         } else {
             String[] parts = details.split(" /from | /to ", 3);
-            if (parts.length < 3) throw new LaraException("Please specify an event with /from and /to");
+            if (parts.length < 3) throw new LaraException("Please specify an event with /from and /to the date and time format has to be DD/MM/YYYY HHMM");
+            if (!Date.isValidDateTime(parts[1]) || !Date.isValidDateTime(parts[2])) {
+                throw new LaraException("Invalid event format! Use DD/MM/YYYY HHMM for both start and end times.");
+            }
             newTask = new Event(parts[0], parts[1], parts[2]);
         }
 

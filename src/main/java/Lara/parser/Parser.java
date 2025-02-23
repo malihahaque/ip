@@ -58,9 +58,9 @@ public class Parser {
                     throw new LaraException("I do not understand what you mean! Please try again!");
             }
         } catch (LaraException e) {
-            return "Error: " + e.getMessage();
+            return "Sorry! " + e.getMessage();
         } catch (ArrayIndexOutOfBoundsException e) {
-            return "Error: Invalid command format!";
+            return "Please put a valid command format!";
         }
     }
 
