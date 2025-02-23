@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Lara duke = new Lara("hello");
+    private Lara duke = new Lara("hello.txt");
 
     @Override
     public void start(Stage stage) {
