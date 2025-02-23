@@ -25,7 +25,7 @@ public class Date {
         return null;
     }
     public static boolean isValidDateTime(String dateTime) {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HHmm"); //valid date formatting
         format.setLenient(false);
         try {
             format.parse(dateTime);
