@@ -46,6 +46,7 @@ public class Lara {
     public String getResponse(String input) {
         try {
             if (input.equalsIgnoreCase("bye")) {
+                storage.save(tasks.getTasks());
                 return "Goodbye! Have a great day!"; // Return goodbye message first
             }
             return parser.handleCommandAndReturn(input, tasks, ui, storage);
