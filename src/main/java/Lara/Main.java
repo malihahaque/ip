@@ -34,6 +34,7 @@ public class Main extends Application {
         assert scene != null : "Scene should not be null before setting the stage!";
 
         stage.setScene(scene);
+        stage.setTitle("Lara");
         stage.show();
 
         fxmlLoader.<MainWindow>getController().setDuke(duke);
