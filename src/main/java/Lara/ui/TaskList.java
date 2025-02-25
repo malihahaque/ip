@@ -36,7 +36,14 @@ public class TaskList {
     public String addTask(String command) throws LaraException {
         String[] words = command.split(" ", 2);
         if (words.length < 2) {
-            throw new LaraException("Please describe the task you want to add!");
+            switch (words[0]){
+                case "todo":
+                    throw new LaraException("Todo has a format of todo <description> ");
+                case "deadline":
+                    throw new LaraException("Deadline has a format of <description> /by DD/MM/YYYY HHMM ");
+                case "events":
+                    throw new LaraException("Event has a format of <description> /from DD/MM/YYYY HHMM  /to DD/MM/YYYY HHMM ");
+            }
         }
 
         String type = words[0];
@@ -54,15 +61,56 @@ public class TaskList {
             newTask = new Todo(details);
         } else if (type.equals("deadline")) {
             String[] by = details.split(" /by ", 2);
-            if (!Date.isValidDateTime(by[0])) {
-                throw new LaraException("Invalid deadline format! Please specify a deadline with /by, the date and time format has to be DD/MM/YYYY HHMM");
+            int flag = 0;
+
+            if(by.length < 2) {
+                flag = 1;
+            }
+            if (by.length >= 2) {
+                if(!Date.isValidDateTime(by[1])){
+                    flag = 2;
+                }
+            }
+
+            switch (flag){
+                case 1:
+                    throw new LaraException("Please add a deadline description and specify the deadline with /by, the date and time format has to be DD/MM/YYYY HHMM");
+                case 2:
+                    throw new LaraException("Invalid deadline date and time format! Please specify the deadline with /by, the date and time format has to be DD/MM/YYYY HHMM");
+
             }
             newTask = new Deadline(by[0], by[1]);
         } else {
             String[] parts = details.split(" /from | /to ", 3);
-            if (!Date.isValidDateTime(parts[0]) || !Date.isValidDateTime(parts[2])) {
-                throw new LaraException("Invalid event format! Please specify an event with /from and /to, the date and time format has to be DD/MM/YYYY HHMM");
+
+            int flag = 0;
+            if (parts.length != 3) {
+                flag = 1;
+            } else {
+                int counter = 0;
+                if (!Date.isValidDateTime(parts[1])) {
+                    flag = 2;
+                    counter++;
+                }
+                if (!Date.isValidDateTime(parts[2])) {
+                    flag = 3;
+                    counter++;
+                }
+                flag = counter == 2 ? 4 : flag;
             }
+
+            switch (flag){
+                case 1:
+                    throw new LaraException("Please check if you have added an event description and specified the event with /from and /to, the date and time format has to be DD/MM/YYYY HHMM");
+                case 2:
+                    throw new LaraException("/from date or time is invalid, the date and time format has to be DD/MM/YYYY HHMM");
+                case 3:
+                    throw new LaraException("/to date or time is invalid, the date and time format has to be DD/MM/YYYY HHMM");
+                case 4:
+                    throw new LaraException("both of the dates and times are invalid, the date and time format has to be DD/MM/YYYY HHMM");
+            }
+
+
             newTask = new Event(parts[0], parts[1], parts[2]);
         }
 
@@ -144,6 +192,9 @@ public class TaskList {
     }
 
 }
+
+
+
 
 
 
