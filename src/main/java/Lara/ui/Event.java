@@ -19,9 +19,16 @@ public class Event extends Task {
 
     public Event(String description, String start, String end) {
         super(description);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
-        this.start = LocalDateTime.parse(start, formatter);;
-        this.end = LocalDateTime.parse(end, formatter);
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        try {
+            this.start = LocalDateTime.parse(start, formatter1);
+            this.end = LocalDateTime.parse(end, formatter1);
+        } catch (Exception e) {
+            this.start = LocalDateTime.parse(start, formatter2);
+            this.end = LocalDateTime.parse(end, formatter2);
+        }
     }
 
     @Override
@@ -33,8 +40,9 @@ public class Event extends Task {
 
     @Override
     public String toFileFormat() {
-        return "E | " + (isDone ? "1" : "0") + " | " + description + " | " + start + " | " + end;
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+        return "E | " + (isDone ? "1" : "0") + " | " + description + " | "
+                + start.format(formatter) + " | " + end.format(formatter);
     }
 
     @Override

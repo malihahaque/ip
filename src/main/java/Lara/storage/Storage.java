@@ -56,18 +56,6 @@ public class Storage {
             System.out.println("Warning: Unable to create file for tasks.");
         }
     }
-
-    public String changeFile(String newFileName) {
-        this.filePath = DIRECTORY_PATH + "/" + newFileName;
-        ensureFileExists();
-        return "Storage file changed to " + newFileName + "!";
-    }
-
-    public void change(String newFilePath) {
-        this.filePath = newFilePath;
-        System.out.println("Data source changed to: " + newFilePath);
-    }
-
     public ArrayList<Task> load() throws LaraException {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
@@ -133,6 +121,51 @@ public class Storage {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

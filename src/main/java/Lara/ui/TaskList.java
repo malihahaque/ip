@@ -54,16 +54,14 @@ public class TaskList {
             newTask = new Todo(details);
         } else if (type.equals("deadline")) {
             String[] by = details.split(" /by ", 2);
-            if (by.length < 2) throw new LaraException("Please specify a deadline with /by, the date and time format has to be DD/MM/YYYY HHMM");
-            if (!Date.isValidDateTime(by[1])) {
-                throw new LaraException("Invalid deadline format! Use DD/MM/YYYY HHMM.");
+            if (!Date.isValidDateTime(by[0])) {
+                throw new LaraException("Invalid deadline format! Please specify a deadline with /by, the date and time format has to be DD/MM/YYYY HHMM");
             }
             newTask = new Deadline(by[0], by[1]);
         } else {
             String[] parts = details.split(" /from | /to ", 3);
-            if (parts.length < 3) throw new LaraException("Please specify an event with /from and /to the date and time format has to be DD/MM/YYYY HHMM");
-            if (!Date.isValidDateTime(parts[1]) || !Date.isValidDateTime(parts[2])) {
-                throw new LaraException("Invalid event format! Use DD/MM/YYYY HHMM for both start and end times.");
+            if (!Date.isValidDateTime(parts[0]) || !Date.isValidDateTime(parts[2])) {
+                throw new LaraException("Invalid event format! Please specify an event with /from and /to, the date and time format has to be DD/MM/YYYY HHMM");
             }
             newTask = new Event(parts[0], parts[1], parts[2]);
         }
@@ -83,7 +81,7 @@ public class TaskList {
             return "Noted. I've removed this task:\n" + removedTask +
                     "\nNow you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list.";
         } catch (NumberFormatException e) {
-            throw new LaraException("Invalid task number.");
+            throw new LaraException("Please input a valid task number!");
         }
     }
 
@@ -96,7 +94,7 @@ public class TaskList {
             tasks.get(index).markAsDone();
             return "Well done! I've marked this task as done:\n" + tasks.get(index);
         } catch (NumberFormatException e) {
-            throw new LaraException("Invalid task number.");
+            throw new LaraException("Please input a valid task number!");
         }
     }
 
@@ -110,7 +108,7 @@ public class TaskList {
             return "OK, I've marked this task as not done yet:\n" + tasks.get(index);
 
         } catch (NumberFormatException e) {
-            throw new LaraException("Invalid task number.");
+            throw new LaraException("Please input a valid task number!");
         }
     }
 
@@ -138,11 +136,6 @@ public class TaskList {
             response.append("No matching tasks found.");
         }
         return response.toString();
-    }
-
-    public String changeStorage(String newFilePath, Storage storage) {
-        storage.change(newFilePath);
-        return "Data source has been updated to: " + newFilePath;
     }
 
     public String sortTasks() {

@@ -16,8 +16,14 @@ public class Deadline extends Task {
     protected LocalDateTime by;
     public Deadline(String description, String by) {
         super(description);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
-        this.by = LocalDateTime.parse(by, formatter);
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        try {
+            this.by = LocalDateTime.parse(by, formatter1);
+        } catch (Exception e) {
+            this.by = LocalDateTime.parse(by, formatter2);
+        }
     }
 
     @Override
@@ -27,8 +33,8 @@ public class Deadline extends Task {
     }
     @Override
     public String toFileFormat() {
-        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + by;
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + by.format(formatter);
     }
     @Override
     public LocalDateTime getComparableDate() {

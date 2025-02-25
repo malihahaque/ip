@@ -18,14 +18,14 @@ import Lara.exception.LaraException;
 
 public class Parser {
     public String handleCommandAndReturn(String command, TaskList tasks, Ui ui, Storage storage) throws LaraException {
-        StringBuilder response = new StringBuilder();
+        command = command.trim();
+
+        String[] words = command.split(" ", 2);
+        String action = words[0];
 
         try {
-            String[] words = command.split(" ", 2);
-            String action = words[0];
-
             switch (action) {
-                case "hello" :
+                case "hello":
                     return "How can I help you?";
                 case "bye":
                     return "Goodbye! Have a great day!";
@@ -33,50 +33,50 @@ public class Parser {
                     return ui.showHelp();
                 case "list":
                     return tasks.getTaskList(tasks);
-                case "changeFile":
-                    if (words.length < 2) {
-                        throw new LaraException("Please specify a file name.");
-                    }
-                    String newFileName = words[1].trim();
-                    storage.changeFile(newFileName);
-                    storage.save(tasks.getTasks());
-                    return "Storage file changed to: " + newFileName;
                 case "mark":
-                    String ans = tasks.markTask(words[1]);
+                    if (words.length < 2) {
+                        throw new LaraException("Please specify a task number to mark.");
+                    }
+                    String markResult = tasks.markTask(words[1].trim());
                     storage.save(tasks.getTasks());
-                    return ans;
+                    return markResult;
                 case "unmark":
-                    String notDone= tasks.unmarkTask(words[1]);
+                    if (words.length < 2) {
+                        throw new LaraException("Please specify a task number to unmark.");
+                    }
+                    String unmarkResult = tasks.unmarkTask(words[1].trim());
                     storage.save(tasks.getTasks());
-                    return notDone;
+                    return unmarkResult;
                 case "delete":
-                    String delete = tasks.deleteTask(words[1]);
+                    if (words.length < 2) {
+                        throw new LaraException("Please specify a task number to delete.");
+                    }
+                    String deleteResult = tasks.deleteTask(words[1].trim());
                     storage.save(tasks.getTasks());
-                    return delete;
+                    return deleteResult;
                 case "sort":
                     return tasks.sortTasks();
                 case "todo":
                 case "deadline":
                 case "event":
-                    String answer= tasks.addTask(command);
+                    if (words.length < 1) {
+                        throw new LaraException("Please provide details for the task.");
+                    }
+                    String taskResult = tasks.addTask(command);
                     storage.save(tasks.getTasks());
-                    return answer;
+                    return taskResult;
                 case "find":
-                    if (words.length < 2) {
-                        throw new LaraException("Please provide a keyword to search for:");
+                    if (words.length < 1) {
+                        throw new LaraException("Please provide a keyword to search for.");
                     }
                     return tasks.findTasks(tasks, words[1].trim());
                 default:
-                    throw new LaraException("I do not understand what you mean! Please try again!");
+                    throw new LaraException("I do not understand what you mean! Try typing \"help\" to see the list of available commands!");
             }
         } catch (LaraException e) {
             return "Sorry! " + e.getMessage();
         } catch (ArrayIndexOutOfBoundsException e) {
-            return "Please put a valid command format!";
+            return "Please enter a valid command format!";
         }
     }
-
 }
-
-
-

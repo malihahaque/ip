@@ -25,9 +25,8 @@ public class Ui {
                 + "8. `mark <index>` - Mark a task as done.\n"
                 + "9. `unmark <index>` - Mark a task as not done.\n"
                 + "10. `find <keyword>` - Find tasks containing a keyword.\n"
-                + "11. `changeFile <file_path>` - Change storage file.\n"
-                + "12. `sort` - Sort tasks by start dates.\n"
-                + "13. `help` - Show this help message.\n";
+                + "11. `sort` - Sort tasks by start dates.\n"
+                + "12. `help` - Show this help message.\n";
     }
 
     public void viewTaskList(TaskList tasks) {

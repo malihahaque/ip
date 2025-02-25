@@ -46,18 +46,12 @@ Deletes the task stored at that number.
 Find your tasks with a specific keyword!
 
 ### Sort
-1. `sort_deadlines` 
-Sorts by dates of Deadline type in chronological order.
-2. `sort_events` 
-Sorts the from date of Event type in chronological order.
+`sort` 
+Sorts by start dates of deadlines and events in chronological order. After this, you can use the list command to see the list of sorted tasks!
 
 ## Help
 `help`
 Lists out all the commands used in the chatbot and the exact format.
-
-## ChangeFile
-`changeFile [filePath]`
-Changes the storage file location.
 
 ### Close
 The `bye` command saves all your tasks and exits the chatbot. You can also manually close the chatbot by clicking the cross in the top left corner. The next time you reopen the chatbot, your tasks will be waiting for you.
